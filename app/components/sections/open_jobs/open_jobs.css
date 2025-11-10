@@ -1,0 +1,109 @@
+/* --- open_jobs.css: Cleaned and Consolidated Styles --- */
+
+/* 1. Main Component Container */
+#sucessful-comp {
+  /* Use a max-width for better structure on large screens */
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  /* Removed redundant display: flex definitions */
+}
+
+/* 2. Title Section */
+#title_of_sucess {
+  width: 96%;
+  height: fit-content;
+  /* Use padding for alignment with cards */
+  padding: 0 1rem;
+}
+
+#heading_of_sucessful {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2em;
+  color: #333;
+}
+
+/* 3. Card Holder (Wrapper for the scrolling cards) */
+#card_holder {
+  width: 100%;
+  position: relative;
+  /* border: 2px solid red; /* Remove border after debugging */
+  /* Remove overflow: hidden here, let the scroll container handle it */
+}
+
+/* 4. Scrolling Cards Container */
+#overflow_cards_container {
+  display: flex;
+  overflow-x: auto; /* Use auto for better cross-browser compatibility */
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory; /* Optional: Snaps to card boundaries */
+  justify-content: flex-start; /* Crucial: Start from the beginning */
+  gap: 1rem;
+  padding: 1rem; /* Padding for the sides */
+  scroll-padding: 1rem;
+  /* Remove conflicting justify-content: space-evenly and padding-left: 200px */
+}
+
+/* Hide the default scrollbar */
+#overflow_cards_container::-webkit-scrollbar {
+  display: none;
+}
+#overflow_cards_container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* 5. Card Sizing (Ensuring 4 cards are visible) */
+#overflow_cards_container > * {
+  /* Calc: (100% / 4) - gap/4. Adjusted for a clean break */
+  flex: 0 0 calc(25% - 0.75rem); /* 4 cards per row, accounting for the 1rem gap */
+  scroll-snap-align: start;
+  flex-shrink: 0; /* Prevents cards from shrinking */
+  /* If CampaignCard has internal padding, you may need to adjust the calc value slightly */
+}
+
+/* 6. Navigation Buttons Styling (Separate from the scroller) */
+#navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 1rem; /* Separate buttons visually from the cards */
+  width: 100%; /* Use 100% width for centering */
+}
+
+#left_button,
+#right_button {
+  border: 2px solid #ccc;
+  background-color: white;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.2s, transform 0.2s;
+  padding: 10px; /* Add padding for image */
+}
+
+#left_button:hover,
+#right_button:hover {
+  background-color: rgb(120, 204, 120);
+  transform: scale(1.05);
+  border-color: rgb(120, 204, 120);
+}
+
+#left_button img,
+#right_button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensure image fits well */
+}
+
+#left_button img {
+  transform: scaleX(-1); /* Flips the image for the left arrow */
+}
+
+/* --- End of open_jobs.css --- */

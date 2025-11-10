@@ -1,0 +1,232 @@
+/* ==============================================
+   PROFESSIONAL FOOTER COMPONENT STYLES
+   ============================================== */
+
+/* --- Global Wrapper & Base Styles --- */
+.footer-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1a1a1a;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Ensure all child elements inherit box-sizing */
+.footer-wrapper * {
+    box-sizing: border-box;
+}
+
+/* --- Divider Lines --- */
+.footer-divider-top {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    width: 100%;
+    margin: 0;
+}
+
+/* --- Main Content Container --- */
+#footer_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 48px 0 40px;
+    gap: 40px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* --- Left Section: Logo & Description --- */
+.footer-left-content {
+    flex: 1;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+}
+
+.x2earn-logo {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.footer-description-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #666666;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* --- Right Section: Social Follow --- */
+.footer-right-content {
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
+
+.follow-us-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.follow-logo {
+    width: 20px;
+    height: 20px;
+    background-color: #1a1a1a;
+    border-radius: 50%;
+    padding: 10px;
+    box-sizing: content-box;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.follow-logo:hover {
+    background-color: #6a0dad;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(106, 13, 173, 0.3);
+}
+
+.follow-text {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #1a1a1a;
+    text-transform: uppercase;
+}
+
+/* --- Bottom Section: Company Info --- */
+.footer-bottom-bar {
+    width: 100%;
+    padding: 24px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.tsc-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tsc-dot {
+    width: 20px;
+    height: 20px;
+    background-color: #FFCDD9;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(255, 107, 122, 0.4);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.tsc-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #000000;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 850px) {
+    .footer-wrapper {
+        padding: 0 24px;
+    }
+
+    #footer_container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 32px 0 24px;
+        gap: 32px;
+    }
+
+    .footer-left-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .footer-right-content {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .footer-bottom-bar {
+        justify-content: flex-start;
+        padding: 20px 0 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-wrapper {
+        padding: 0 16px;
+    }
+
+    #footer_container {
+        padding: 24px 0 20px;
+        gap: 24px;
+    }
+
+    .x2earn-logo {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 16px;
+    }
+
+    .footer-description-text {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .follow-us-section {
+        gap: 12px;
+    }
+
+    .follow-logo {
+        width: 18px;
+        height: 18px;
+        padding: 8px;
+    }
+
+    .follow-text {
+        font-size: 13px;
+    }
+
+    .tsc-name {
+        font-size: 11px;
+    }
+
+    .footer-bottom-bar {
+        padding: 16px 0 20px;
+    }
+}
+
+/* --- Accessibility Enhancements --- */
+.follow-logo:focus-visible {
+    outline: 2px solid #6a0dad;
+    outline-offset: 2px;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .follow-logo,
+    .tsc-dot {
+        animation: none;
+        transition: none;
+    }
+}

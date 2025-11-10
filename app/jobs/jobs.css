@@ -1,0 +1,65 @@
+#all-jobs-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#JOBS {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+       font-family: "Orbitron", sans-serif;
+}
+
+#filters {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.filter-btn {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: black;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔴 Pending (red neon style) */
+.filter-btn.pending {
+  background: linear-gradient(90deg, #ff4747, #ff0000);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+}
+
+.filter-btn.pending:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+}
+
+/* 🟢 Completed (green neon style) */
+.filter-btn.completed {
+  background: linear-gradient(90deg, #00ff9d, #00ff3c);
+  box-shadow: 0 0 15px rgba(0, 255, 100, 0.6);
+}
+
+.filter-btn.completed:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(0, 255, 100, 0.9);
+}
+
+/* Optional active state */
+.filter-btn.active {
+  border: 2px solid white;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+}

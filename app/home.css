@@ -1,0 +1,143 @@
+#home_container {
+  width: 100%;
+  height: calc(100vh - 90px);
+}
+#diagram {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+}
+
+#diagram img {
+  height: 70%;
+}
+
+#get_dollars {
+  font-family: "Orbitron", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: x-large;
+}
+
+#get_dollars h2 {
+  margin: 0px;
+}
+
+.morph-text {
+  display: inline-block;
+  font-weight: bold;
+}
+
+.char {
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+#real_para {
+  text-align: center;
+  font-size: 1.2rem;
+  width: 80%;
+  font-family: "Lexend Deca", sans-serif;
+  height: fit-content;
+  line-height: 40px;
+}
+
+#para_x2earn {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+#button_for_home {
+    margin-top: 10px;
+}
+
+#button {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 16px; 
+  justify-content: center;
+}
+
+/* Common styles for BOTH buttons */
+#button button {
+    
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid; /* Border will be defined by specific buttons */
+  border-radius: 8px; /* Rounded corners */
+  padding: 12px 24px; /* Spacious padding */
+  font-family: "Orbitron", sans-serif;
+  font-weight: 600; /* Semibold text */
+  font-size: 20px;
+  text-transform: uppercase; /* All caps text */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+  transition: all 0.2s ease-in-out; /* Smooth hover effect */
+  letter-spacing: 0.5px;
+}
+
+/* --- Styling for the "Start Earning" button --- */
+
+/* The <div> wrapper isn't strictly needed for styling, 
+           but we target the button inside it */
+#start_earning button {
+  border-color: #ffffff;
+  /* This shadow creates the thin black border 
+               OUTSIDE the white border, just like the image */
+  box-shadow: 0 0 0 2px #000000;
+}
+
+/* Styling for the "$" icon box */
+#start_earning button .icon {
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-weight: 700;
+  /* Match transition for hover */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover effect for "Start Earning" */
+#start_earning button:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #000000;
+  box-shadow: none; /* Remove shadow on hover */
+}
+
+/* Invert the icon colors on hover too */
+#start_earning button:hover .icon {
+  border-color: #000000;
+  color: #000000;
+}
+
+/* --- Styling for the "+ Create Job" button --- */
+
+/* We target the button that is a DIRECT child of #button */
+#button > button {
+  border-color: #000000; /* Solid black border */
+}
+
+/* Hover effect for "+ Create Job" */
+#button > button:hover {
+  background-color: #333333; /* Dark gray */
+  border-color: #333333;
+}
+
+#sucessful_campaigns_container {
+  width: 100%;
+  height: 100vh;
+}
+
+
+#open_campaigns_container {
+  width: 100%;
+  height: 100vh;
+  border-bottom: 1px solid black;
+}
+
