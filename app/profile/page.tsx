@@ -96,8 +96,7 @@ export default function ProfileEarningsDashboard() {
           border: '2px solid #e0e0e0',
           borderRadius: '8px',
           padding: '20px',
-          textAlign: 'center',
-          rowSpan: 2
+          textAlign: 'center'
         }}>
           <div style={{
             fontSize: '12px',

@@ -9,6 +9,8 @@ import Footer from "./components/footer/footer";
 export default function Home() {
    const get_dollar = useRef<HTMLElement>(null!);
    useDollar(get_dollar);
+
+    console.log("HOME IS RENDERED")
    
 
   return (

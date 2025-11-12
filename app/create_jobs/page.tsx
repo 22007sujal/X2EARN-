@@ -32,7 +32,7 @@ const CreateJobsForm: React.FC = () => {
       alignItems: 'center',
       justifyContent: 'center',
       padding: '20px',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      fontfamliy: "Orbitron",
     },
     formBox: {
       backgroundColor: 'white',
