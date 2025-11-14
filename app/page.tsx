@@ -6,6 +6,9 @@ import useDollar from "./components/dollar";
 import SuccessfulCampaigns from "./components/sections/open_jobs/open_jobs";
 import Footer from "./components/footer/footer";
 
+
+
+
 export default function Home() {
    const get_dollar = useRef<HTMLElement>(null!);
    useDollar(get_dollar);

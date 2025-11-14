@@ -1,10 +1,13 @@
 'use client'
 import React, { useState } from 'react';
 import Footer from '../components/footer/footer';
+import { useUser } from '../hooks/useUser';
 
 
 export default function ProfileEarningsDashboard() {
   const [withdrawAmount, setWithdrawAmount] = useState('');
+
+  const {user} = useUser();
 
   const handleWithdraw = () => {
     if (withdrawAmount && parseFloat(withdrawAmount) > 0) {
@@ -48,7 +51,7 @@ export default function ProfileEarningsDashboard() {
             fontWeight: 'bold',
             marginBottom: '5px'
           }}>
-            22007SUJAL
+           {user?.username.toUpperCase()}
           </div>
           <div style={{
             fontSize: '20px',
@@ -113,7 +116,7 @@ export default function ProfileEarningsDashboard() {
             fontWeight: 'bold',
             marginBottom: '15px'
           }}>
-            2$
+            {`${user?.current_balance}$`}
           </div>
           <input
             type="number"

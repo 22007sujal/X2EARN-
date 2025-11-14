@@ -1,105 +1,70 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import CampaignCard from "../components/elements/card_of_jobs/req_job_card"
-import "./jobs.css"
+import { useState } from "react";
+import CampaignCard from "../components/elements/card_of_jobs/req_job_card";
+import "./jobs.css";
 import Footer from "../components/footer/footer";
+import { useJobs } from "../hooks/useJobs";
+
+export default function Jobs() {
+  const [pending, setPending] = useState(true);
+  const { pendingJobs } = useJobs();
 
 
 
-export  default function jobs() {
-    const [pending , set_pending] = useState(true);
+ 
 
-    return(
-        <div id="JOBS" >
-            <h1>ALL JOBS</h1>
-<div id="filters">
-  <button onClick={()=>{set_pending(true)}} className="filter-btn pending">Pending</button>
-  <button onClick={()=>{set_pending(false)}}className="filter-btn completed">Completed</button>
-</div>
-            <div id="all-jobs-container">
-                
-               <CampaignCard
-            font_color={pending === true ? "red" : "green"}
-            bgcolor={pending === true ? "red" : "green"}
-            postedBy="0XSUJAL"
-            targetReposts={250}
-            perRepostValue={0.02}
-            toBoxValue={0.23}
-            totalValueEquation="250 X 0.02"
-            totalValueResult={"2.5"}
-            completedIn="2H 4 MIN"
-            targetPostLink="https://x.com/0xNairolf/status...23"
-            profileImageLink="./shy.png"
-            currentProgress="125"
-            JobType="RETWEET"
-            status="PENDING"
-          />
+  console.log(pendingJobs);
 
+  return (
+    <div id="JOBS">
+      <h1>ALL JOBS</h1>
+
+      {/* Filter buttons */}
+      <div id="filters">
+        <button
+          onClick={() => setPending(true)}
+          className={`filter-btn pending ${pending ? "active" : ""}`}
+        >
+          Pending
+        </button>
+
+        <button
+          onClick={() => setPending(false)}
+          className={`filter-btn completed ${!pending ? "active" : ""}`}
+        >
+          Completed
+        </button>
+      </div>
+
+      {/* Jobs container */}
+      <div id="all-jobs-container">
+        {pendingJobs.length === 0 ? (
+          <p>No {pending ? "pending" : "completed"} jobs found.</p>
+        ) : (
+          pendingJobs.map((job, index) => (
             <CampaignCard
-            font_color={pending === true ? "red" : "green"}
-            bgcolor={pending === true ? "red" : "green"}
-            postedBy="0XSUJAL"
-            targetReposts={250}
-            perRepostValue={0.02}
-            toBoxValue={0.23}
-            totalValueEquation="250 X 0.02"
-            totalValueResult={"2.5"}
-            completedIn="2H 4 MIN"
-            targetPostLink="https://x.com/0xNairolf/status...23"
-            profileImageLink="./shy.png"
-            currentProgress="102"
-            JobType="FOLLOW"
-            status="PENDING"
-          />
-            <CampaignCard
-            font_color={pending === true ? "red" : "green"}
-            bgcolor={pending === true ? "red" : "green"}
-            postedBy="0XSUJAL"
-            targetReposts={250}
-            perRepostValue={0.02}
-            toBoxValue={0.23}
-            totalValueEquation="250 X 0.02"
-            totalValueResult={"2.5"}
-            completedIn="2H 4 MIN"
-            targetPostLink="https://x.com/0xNairolf/status...23"
-            profileImageLink="./shy.png"
-            currentProgress="10%"
-            JobType="RETWEET"
-          />
-            <CampaignCard
-            font_color={pending === true ? "red" : "green"}
-            bgcolor={pending === true ? "red" : "green"}
-            postedBy="0XSUJAL"
-            targetReposts={250}
-            perRepostValue={0.02}
-            toBoxValue={0.23}
-            totalValueEquation="250 X 0.02"
-            totalValueResult={"2.5"}
-            completedIn="2H 4 MIN"
-            targetPostLink="https://x.com/0xNairolf/status...23"
-            profileImageLink="./shy.png"
-            currentProgress="10%"
-            JobType="RETWEET"
-          />
-            <CampaignCard
-            font_color={pending === true ? "red" : "green"}
-            bgcolor={pending === true ? "red" : "green"}
-            postedBy="0XSUJAL"
-            targetReposts={250}
-            perRepostValue={0.02}
-            toBoxValue={0.23}
-            totalValueEquation="250 X 0.02"
-            totalValueResult={"2.5"}
-            completedIn="2H 4 MIN"
-            targetPostLink="https://x.com/0xNairolf/status...23"
-            profileImageLink="./shy.png"
-            currentProgress="10%"
-            JobType="RETWEET"
-          />
-            </div>
-            <Footer/>
-        </div>
+              key={index}
+              font_color="white"
+              bgcolor="red"
+              postedBy={job.createdBy}
+              targetPostLink={job.tweetLink || "#"}
+              targetReposts={job.jobTarget}
+              perRepostValue={job.perJob}
+              toBoxValue={job.perJob}
+              totalValueEquation={job.totalValue}
+              totalValueResult={job.totalValue}
+            
+              
+              JobType={job.jobType}
+              currentProgress={"70"}
+              status={"PENDING"}
+            />
+          ))
+        )}
+      </div>
 
-    )
+      <Footer />
+    </div>
+  );
 }

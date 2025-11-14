@@ -7,20 +7,22 @@ interface CampaignCardProps {
   targetReposts: number;
   perRepostValue: number;
   toBoxValue: number;
-  totalValueEquation: string;
-  totalValueResult: string;
-  completedIn: string;
+  totalValueEquation: number;
+  totalValueResult: number;
+  completedIn?: number;
   targetPostLink: string;
-  profileImageLink: string;
+  profileImageLink?: string;
   bgcolor: string;
   font_color: string;
   JobType: "RETWEET" | "FOLLOW";
   currentProgress: string;
   userTaskStatus?: "PENDING_VERIFICATION" | "VERIFIED_PAID" | "REJECTED"; // 👈 new optional prop
+  key:number
 }
 
 const CampaignCard: React.FC<CampaignCardProps> = React.memo(
   ({
+    key,
     postedBy,
     status = "COMPLETED",
     targetReposts,

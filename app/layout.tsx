@@ -1,9 +1,11 @@
 "use client"
 import type { Metadata } from "next";
-import Nav from "./components/navbar/nav";
+
 import { WagmiProvider } from "wagmi";
 import { config } from "./config";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Nav from "./components/navbar/nav";
+
 
 
 
@@ -25,7 +27,7 @@ export default function RootLayout({
       <body>
         <WagmiProvider config={config}>
           <QueryClientProvider client={queryClient}>
-            <Nav />
+            <Nav/>
             {children}
           </QueryClientProvider>
         </WagmiProvider>

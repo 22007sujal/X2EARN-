@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { Rocket } from 'lucide-react';
 import Footer from '../components/footer/footer';
+import { useAccount } from 'wagmi';
+import { useUser } from '../hooks/useUser';
 
 const CreateJobsForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +13,9 @@ const CreateJobsForm: React.FC = () => {
     totalValue: '',
     tweetLink: ''
   });
+
+  const { isConnected } = useAccount();
+  const {user} = useUser()
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -32,7 +37,7 @@ const CreateJobsForm: React.FC = () => {
       alignItems: 'center',
       justifyContent: 'center',
       padding: '20px',
-      fontfamliy: "Orbitron",
+      fontFamily: "Orbitron",
     },
     formBox: {
       backgroundColor: 'white',
@@ -115,92 +120,96 @@ const CreateJobsForm: React.FC = () => {
 
   return (
     <>
-    <div style={styles.container}>
-      <div style={styles.formBox}>
-        <h1 style={styles.title}>CREATE JOBS</h1>
-        
-        <div>
-          <div style={styles.row}>
-            <div style={styles.column}>
-              <label style={styles.label}>JOB TYPE</label>
+      {isConnected && user != null ? (
+        <div style={styles.container}> 
+          <div style={styles.formBox}>
+            <h1 style={styles.title}>CREATE JOBS</h1>
+            
+            <div>
+              <div style={styles.row}>
+                <div style={styles.column}>
+                  <label style={styles.label}>JOB TYPE</label>
+                  <input
+                    type="text"
+                    name="jobType"
+                    value={formData.jobType}
+                    onChange={handleInputChange}
+                    style={styles.input}
+                  />
+                </div>
+                <div style={styles.column}>
+                  <label style={styles.label}>JOB TARGET</label>
+                  <input
+                    type="text"
+                    name="jobTarget"
+                    value={formData.jobTarget}
+                    onChange={handleInputChange}
+                    placeholder="eg 400"
+                    style={{
+                      ...styles.input,
+                      color: formData.jobTarget ? '#000' : '#ccc'
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div style={styles.row}>
+                <div style={styles.column}>
+                  <label style={styles.label}>PER JOB $</label>
+                  <input
+                    type="text"
+                    name="perJobPrice"
+                    value={formData.perJobPrice}
+                    onChange={handleInputChange}
+                    placeholder="eg 0.104"
+                    style={{
+                      ...styles.input,
+                      color: formData.perJobPrice ? '#000' : '#ccc'
+                    }}
+                  />
+                </div>
+                <div style={styles.column}>
+                  <label style={styles.label}>TOTAL VALUE</label>
+                  <input
+                    type="text"
+                    name="totalValue"
+                    value={formData.totalValue}
+                    onChange={handleInputChange}
+                    style={styles.input}
+                  />
+                </div>
+              </div>
+
               <input
                 type="text"
-                name="jobType"
-                value={formData.jobType}
+                name="tweetLink"
+                value={formData.tweetLink}
                 onChange={handleInputChange}
-                style={styles.input}
-              />
-            </div>
-            <div style={styles.column}>
-              <label style={styles.label}>JOB TARGET</label>
-              <input
-                type="text"
-                name="jobTarget"
-                value={formData.jobTarget}
-                onChange={handleInputChange}
-                placeholder="eg 400"
+                placeholder="PASTE THE TARGET TWEET LINK"
                 style={{
-                  ...styles.input,
-                  color: formData.jobTarget ? '#000' : '#ccc'
+                  ...styles.fullWidthInput,
+                  color: formData.tweetLink ? '#000' : '#999'
                 }}
               />
-            </div>
-          </div>
 
-          <div style={styles.row}>
-            <div style={styles.column}>
-              <label style={styles.label}>PER JOB $</label>
-              <input
-                type="text"
-                name="perJobPrice"
-                value={formData.perJobPrice}
-                onChange={handleInputChange}
-                placeholder="eg 0.104"
-                style={{
-                  ...styles.input,
-                  color: formData.perJobPrice ? '#000' : '#ccc'
-                }}
-              />
+              <div style={styles.buttonContainer}>
+                <button
+                  onClick={handleLaunchCampaign}
+                  style={styles.button}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e85555'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#ef6b6b'}
+                >
+                  <Rocket size={18} />
+                  LAUNCH CAMPAIGN
+                </button>
+              </div>
             </div>
-            <div style={styles.column}>
-              <label style={styles.label}>TOTAL VALUE</label>
-              <input
-                type="text"
-                name="totalValue"
-                value={formData.totalValue}
-                onChange={handleInputChange}
-                style={styles.input}
-              />
-            </div>
-          </div>
-
-          <input
-            type="text"
-            name="tweetLink"
-            value={formData.tweetLink}
-            onChange={handleInputChange}
-            placeholder="PASTE THE TARGET TWEET LINK"
-            style={{
-              ...styles.fullWidthInput,
-              color: formData.tweetLink ? '#000' : '#999'
-            }}
-          />
-
-          <div style={styles.buttonContainer}>
-            <button
-              onClick={handleLaunchCampaign}
-              style={styles.button}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e85555'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#ef6b6b'}
-            >
-              <Rocket size={18} />
-              LAUNCH CAMPAIGN
-            </button>
           </div>
         </div>
-      </div>
-    </div>
-    <Footer/>
+      ) : (
+        <div>Please connect your wallet to create jobs.</div>
+      )}
+      <Footer/>
     </>
   );
 };

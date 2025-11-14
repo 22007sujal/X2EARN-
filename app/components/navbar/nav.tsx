@@ -3,27 +3,40 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import "@/app/components/navbar/nav.css";
+import "./nav.css";
 import useTilt from "../tilt";
-import { useAccount, useConnect } from "wagmi";
+import { useAccount, useConnect, useDisconnect } from "wagmi";
+import { useVerification } from "@/app/hooks/twitterverification";
+import VerifyPopup from "../verifypopup/verify";
 
 export default function Nav() {
   const allJobsRef = useRef<HTMLDivElement>(null!);
   useTilt(allJobsRef, 15);
 
-  const { connect, connectors } = useConnect();
-  const { isConnected } = useAccount();
+  const {
+    connectWallet,
+    disconnect,
+    address,
+    isConnected,
+    nonce,
+    showPopup,
+    setShowPopup,
+    verifyTweet,
+    verifying,
+    verified,
+    loading,
+    error,
+  } = useVerification();
 
-  // Connect wallet function
-  const connect_to_wallet = () => {
-    if (connectors.length > 0) {
-      connect({ connector: connectors[0] }); // Use the first available connector
-    } else {
-      console.error("No wallet connectors found");
-    }
-  };
 
-  console.log("NAV IS RENDERED")
+  function close_popup() {
+      setShowPopup(false);
+      disconnect();
+  }
+
+ 
+
+  console.log("NAV IS RENDERED");
 
   return (
     <div id="nav-bar-container">
@@ -45,7 +58,10 @@ export default function Nav() {
       {/* Navigation options */}
       <div id="options">
         <div id="all-jobs" ref={allJobsRef}>
-          <Link href="/jobs" style={{ textDecoration: "none", color: "inherit" }}>
+          <Link
+            href="/jobs"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             <p>ALL JOBS</p>
           </Link>
           <p>EARN</p>
@@ -61,7 +77,10 @@ export default function Nav() {
         </div>
 
         <div id="box">
-          <Link href="/Box" style={{ textDecoration: "none", color: "inherit" }}>
+          <Link
+            href="/Box"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             <p>BOX</p>
           </Link>
         </div>
@@ -70,7 +89,7 @@ export default function Nav() {
       {/* Wallet connect / menu */}
       {!isConnected ? (
         <div id="connect-button">
-          <button onClick={connect_to_wallet}>CONNECT</button>
+          <button onClick={connectWallet}>CONNECT</button>
         </div>
       ) : (
         <div id="menu">
@@ -99,6 +118,16 @@ export default function Nav() {
               </Link>
             </div>
           </div>
+          {showPopup && nonce && address && (
+            <VerifyPopup
+              wallet={address}
+              nonce={nonce}
+              onClose={() => close_popup()}
+              onVerify={verifyTweet}
+              verifying={verifying}
+              verified={verified}
+            />
+          )}
         </div>
       )}
     </div>
